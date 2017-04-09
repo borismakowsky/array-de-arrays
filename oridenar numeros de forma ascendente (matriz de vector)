@@ -1,0 +1,85 @@
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#define MAX 20
+
+using namespace std;
+
+struct matV
+{
+	int subvec[MAX];
+};
+void cargar (matV a[MAX][MAX],int orden,int n);
+void burbuja(matV a[MAX][MAX],int orden,int n);
+void mostrar (matV a[MAX][MAX],int orden,int n);
+
+void main()
+{
+	matV a[MAX][MAX];
+	int orden,n;
+	do{
+	cout<<"Ingrese el numero de filas y columnas de la matriz"<<endl;
+	cin>>orden;
+	}while(orden<1 || orden>MAX);
+	do{
+		cout<<"Ingrese el tamanho del vector"<<endl;
+		cin>>n;
+	}while (n<1 || n>MAX);
+	cargar(a,orden,n);
+	burbuja(a,orden,n);
+	cout<<"La matriz cargada sera: "<<endl;
+	mostrar(a,orden,n);
+
+	getch();
+}
+void cargar (matV a[MAX][MAX],int orden,int n)
+{
+	for(int i=0;i<orden;i++)
+	{
+		for (int j=0;j<orden;i++)
+		{
+			for(int k=0;k<n;k++)
+			{
+				cout<<"INTRODUZCA LA MATRIZ["<<i<<"]["<<j<<"].subvec["<<k<<"]= "<<endl;
+				cin>>a[i][j].subvec[k];
+			}
+		}
+	}
+}
+
+void burbuja(matV a[MAX][MAX],int orden,int n)
+{
+	int aux;
+	for(int i=0;i<orden;i++)
+	{
+		for (int j=0;j<orden;i++)
+		{
+			for(int k=0;k<(n-1);k++)
+			{
+				for(int l=k+1;l<n;l++)
+				{
+					if (a[i][j].subvec[k]>a[i][j].subvec[l])
+					{
+
+						aux=a[i][j].subvec[k];
+						a[i][j].subvec[k]=a[i][j].subvec[k];
+						a[i][j].subvec[k]=aux;
+					}
+				}
+			}
+		}
+	}
+}
+void mostrar (matV a[MAX][MAX],int orden,int n)
+{
+	for(int i=0;i<orden;i++)
+	{
+		for (int j=0;j<orden;i++)
+		{
+			for(int k=0;k<n;k++)
+			{
+				cout<<"mat["<<i<<"]["<<j<<"].subvec["<<k<<"]="<<a[i][j].subvec[k]<<endl;
+			}
+		}
+	}
+}
